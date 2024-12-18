@@ -1,0 +1,36 @@
+services:
+
+  user-service:
+    image: docker.io/library/node:18
+    command: "node /usr/src/app/index.js"
+    volumes:
+      - ./user-srv:/usr/src/app
+    ports:
+      - "5001:5001"
+    networks:
+      - app_net
+
+  product-service:
+    image: docker.io/library/node:18
+    command: "node /usr/src/app/index.js"
+    volumes:
+      - ./product-srv:/usr/src/app
+    ports:
+      - "5002:5002"
+    networks:
+      - app_net
+
+  order-service:
+    image: docker.io/library/node:18
+    command: "node /usr/src/app/index.js"
+    volumes:
+      - ./order-srv:/usr/src/app
+    ports:
+      - "5003:5003"
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    name: app_net
+    external: true
